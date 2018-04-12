@@ -6,8 +6,7 @@ This is a .NET console application that creates a deep-linking encyclopedic docu
 The test project is the complete Python source of the **doit** GitHub project, which currently expands to 6,678 separate
 hyperlinked object documentation files.
 
-You can review the current test output [here](https://github.com/danielanywhere/PyDoc/Samples/Index.html),
-or by clicking on the **Samples** folder of this project, then opening any file in that folder.
+You can review the current test output [here](http://www.localmarketproductions.com/PyDocSamples/).
 
 The Index.html file lists all source files found.
 
