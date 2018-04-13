@@ -1,0 +1,2021 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>PyDoc Source API</title>
+    <style type="text/css">
+     body, th, td {
+     font-family: Calibri, Verdana, Helvetica, sans-serif;
+     font-size: 12pt;
+     background-color: #f7f7f7;
+     }
+     h2 {
+     color: #333399;
+     }
+     h3 {
+     margin-left: 25px;
+     }
+     h4 {
+     margin-left: 50px;
+     font-family: lucida console,monospace;
+     font-weight: normal;
+     color: #1133cc;
+     text-decoration: underline;
+     }
+     h5 {
+     font-size: 12pt;
+     font-style: italic;
+     font-weight: normal;
+     text-decoration: underline;
+     }
+     h5, p {
+     margin-left: 75px;
+     }
+     hr {
+     border-bottom: 2px solid #7f7f7f;
+     }
+     th {
+     text-align: left;
+     }
+    </style>
+  </head>
+  <body>
+    <h1>PyDoc API</h1>
+    <hr>
+    <h2>ClassInfoCollection</h2>
+            <p>
+            Collection of ClassInfoItem Items.
+            </p>
+        <h3>Properties</h3>
+    <h4>ParentStat</h4>
+            <p>
+            Get/Set a reference to the Parent Statistic.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ ClassInfoCollection(PyDoc.IDrillableStat)</h4>
+    <p>
+            Create a new Instance of the ClassStatCollection Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <h4>Add(PyDoc.ClassInfoItem)</h4>
+    <p>
+            Add a new item to the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the item to be added.
+            </p>
+    <h4>Document(PyDoc.ClassInfoCollection,System.IO.DirectoryInfo)</h4>
+    <p>
+            Individually document each class in the specified collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>classes</b>: 
+            Collection of classes to document.
+            </p>
+    <p><b>targetFolder</b>: 
+            Target file folder to which rendered files will be written.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Value indicating success, if true.
+            </p>
+    <h4>EnumerateClasses(PyDoc.ClassInfoItem)</h4>
+    <p>
+            Return an enumeration of the child classes of the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the class for which sub-classes will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member classes.
+            </p>
+    <h4>EnumerateMethods(PyDoc.ClassInfoItem)</h4>
+    <p>
+            Return an enumeration of the methods in the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the class for which methods will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member methods.
+            </p>
+    <h4>EnumerateVariables(PyDoc.ClassInfoItem)</h4>
+    <p>
+            Return an enumeration of the variables in the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the class for which variables will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member variables.
+            </p>
+    <h4>Parse(PyDoc.ClassInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse a class and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of variables to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            The new index at which to continue searching for the next entity.
+            </p>
+    <h4>Summarize(PyDoc.ClassInfoCollection,PyDoc.IDrillableStat,System.String)</h4>
+    <p>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the collection to be inspected.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>classDescription</b>: 
+            Description to place within the section, as it applies to the caller's
+            context.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            String containing formatted text that can be included in a host file.
+            </p>
+    <hr>
+    <h2>IStatCollection</h2>
+            <p>
+            Collection of Statistics.
+            </p>
+        <h3>Properties</h3>
+    <h4>ParentStat</h4>
+            <p>
+            Get/Set a reference to the Parent Statistic.
+            </p>
+        <hr>
+    <h2>ClassInfoItem</h2>
+            <p>
+            Information about a class and its makeup.
+            </p>
+        <h3>Properties</h3>
+    <h4>Pattern</h4>
+            <p>
+            Get the pattern for partially matching a Class.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ ClassInfoItem</h4>
+    <p>
+            Create a new Instance of the ClassInfoItem Item.
+            </p>
+    <h4>
+ Constructor:
+ ClassInfoItem(PyDoc.ClassInfoCollection)</h4>
+    <p>
+            Create a new Instance of the ClassInfoItem Item.
+            </p>
+    <h4>Parse(PyDoc.ClassInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse the contents of a class and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Sibling class definitions at this level.
+            </p>
+    <p><b>lines</b>: 
+            Source text lines.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </p>
+    <hr>
+    <h2>ContainerBase</h2>
+            <p>
+            Base class used to create full container items.
+            </p>
+            <p>
+            <p>
+            This class doesn't include the static Parse method with the signature:
+            
+            public static int Parse(XInfoCollection values,
+            
+             TextLineCollection lines, int index, int indent,
+             CommentInfoCollection comments)
+            
+            
+            </p>
+            <p>
+            or the static Pattern property with the signature:
+            
+            public static string Pattern { get { return mPattern; } }
+            
+            </p>
+            <p>
+            Parse method and Pattern property must both be implemented by you.
+            </p>
+            </p>
+        <h3>Properties</h3>
+    <h4>Classes</h4>
+            <p>
+            Get a reference to the collection of Classes appearing in this level.
+            </p>
+            <p>
+            These are embedded classes.
+            </p>
+        <h4>Comments</h4>
+            <p>
+            Get a reference to the Comments for this Method.
+            </p>
+        <h4>Content</h4>
+            <p>
+            Get/Set the base Content of this Item.
+            </p>
+        <h4>DocPrefix</h4>
+            <p>
+            Get/Set the Document Prefix used by items of this type.
+            </p>
+        <h4>Imports</h4>
+            <p>
+            Get a reference to the collection of Import items.
+            </p>
+        <h4>IndentLevel</h4>
+            <p>
+            Get/Set the Indent Level of this Item.
+            </p>
+        <h4>LineNumber</h4>
+            <p>
+            Get/Set the Line Number at which this instance was found.
+            </p>
+        <h4>Logic</h4>
+            <p>
+            Get a reference to the non-implemented branching and conditional logic
+            members of this item.
+            </p>
+        <h4>Methods</h4>
+            <p>
+            Get a reference to the collection of Methods appearing in this level.
+            </p>
+            <p>
+            These are embedded methods.
+            </p>
+        <h4>Name</h4>
+            <p>
+            Get/Set the Name of this Item.
+            </p>
+        <h4>Parameters</h4>
+            <p>
+            Get/Set the Parameters of this Item.
+            </p>
+        <h4>Parent</h4>
+            <p>
+            Get/Set a reference to the Parent collection.
+            </p>
+        <h4>Variables</h4>
+            <p>
+            Get a reference to the collection of Variables appearing in this level.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ ContainerBase</h4>
+    <p>
+            Create a new Instance of the ContainerBase Item.
+            </p>
+    <h4>ClearAll</h4>
+    <p>
+            Clear all collections.
+            </p>
+    <h4>GetDocName</h4>
+    <p>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>GetMemberName(System.String)</h4>
+    <p>
+            Return a reference to a member variable instance, class definition, or
+            method definition having the specified name.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the class or variable to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to either a variable or IDrillableStat constituting the
+            member, if found. Otherwise, null.
+            </p>
+    <h4>GetObjectName(System.String)</h4>
+    <p>
+            Return a reference to a variable instance or class definition to
+            set the scope for the next search.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the class or variable to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to either a variable or IDrillableStat constituting a
+            valid scope, if found. Otherwise, null.
+            </p>
+    <h4>GetContainerInfo(PyDoc.ContainerBase,PyDoc.TextLineCollection,System.Int32,System.Int32)</h4>
+    <p>
+            Return a reference to a filled Container Info describing the contents
+            of the caller's instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>container</b>: 
+            Abstract container having the traits of ContainerBase.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines.
+            </p>
+    <p><b>index</b>: 
+            Current index within the source text collection.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level at which parsing is active.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to the container that generically describes the contents of
+            the caller's instance.
+            </p>
+    <h4>GetFile</h4>
+    <p>
+            Return a reference to the file in which this item is found.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to the file containing this object, if found. Otherwise,
+            null.
+            </p>
+    <h4>IsClass(System.String)</h4>
+    <p>
+            Return a value indicating whether the specified name is a class in the
+            current scope.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the entity to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the specified name represents a class. Otherwise, false.
+            </p>
+    <h4>IsVariable(System.String)</h4>
+    <p>
+            Return a value indicating whether the specified name is a variable in
+            the current scope.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the entity to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the specified name represents a variable. Otherwise, false.
+            </p>
+    <hr>
+    <h2>IDrillableStat</h2>
+            <p>
+            Type of Statistic that can be drilled down indefinitely.
+            </p>
+            <p>
+            In this application, the drillable entities are File, Methods, Classes,
+            and Conditional Logic items. However, only Files, Classes, and Methods
+            are extracted this version.
+            </p>
+        <h3>Properties</h3>
+    <h4>DocPrefix</h4>
+            <p>
+            Get/Set the documentation prefix of this item.
+            </p>
+        <h4>Name</h4>
+            <p>
+            Get/Set the name of the item.
+            </p>
+        <h3>Methods</h3>
+    <h4>GetDocName</h4>
+    <p>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>GetFile</h4>
+    <p>
+            Return a reference to the file in which this item is found.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to the file containing this object, if found. Otherwise,
+            null.
+            </p>
+    <h4>GetMemberName(System.String)</h4>
+    <p>
+            Return a reference to a member variable instance, class definition, or
+            method definition having the specified name.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the class or variable to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to either a variable or IDrillableStat constituting the
+            member, if found. Otherwise, null.
+            </p>
+    <h4>GetObjectName(System.String)</h4>
+    <p>
+            Return a reference to a variable instance or class definition to
+            set the scope for the next search.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the class or variable to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to either a variable or IDrillableStat constituting a
+            valid scope, if found. Otherwise, null.
+            </p>
+    <h4>IsClass(System.String)</h4>
+    <p>
+            Return a value indicating whether the specified name is a class in the
+            current scope.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the entity to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the specified name represents a class. Otherwise, false.
+            </p>
+    <h4>IsVariable(System.String)</h4>
+    <p>
+            Return a value indicating whether the specified name is a variable in
+            the current scope.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name of the entity to search for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the specified name represents a variable. Otherwise, false.
+            </p>
+    <hr>
+    <h2>CommentInfoCollection</h2>
+            <p>
+            Collection of CommentInfoItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Add(System.String,System.Int32)</h4>
+    <p>
+            Add an item to the collection by member values.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Comment text to add.
+            </p>
+    <p><b>lineNumber</b>: 
+            Line number associated with this entry.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to a newly created and added comment.
+            </p>
+    <h4>AddRange(System.String,System.Int32)</h4>
+    <p>
+            Add a range of comments to the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Range of comments to be added, as delimited by newline characters.
+            </p>
+    <p><b>lineNumber</b>: 
+            Line index at which the comment was found in source.
+            </p>
+    <h4>Parse(PyDoc.CommentInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32)</h4>
+    <p>
+            Parse the comments at the current and following lines.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of comments to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            The Line Index following the comments.
+            </p>
+    <h4>ToString</h4>
+    <p>
+            Return the string representation of all comments in the collection.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Combination of all comments in this collection, joined by newline.
+            </p>
+    <hr>
+    <h2>CommentInfoItem</h2>
+            <p>
+            Information about a Comment.
+            </p>
+        <h3>Properties</h3>
+    <h4>LineNumber</h4>
+            <p>
+            Get/Set the Line Number at which this instance was found.
+            </p>
+        <h4>Pattern</h4>
+            <p>
+            Get the partial pattern for matching a full line comment.
+            </p>
+        <h4>Value</h4>
+            <p>
+            Get/Set the Value of this Item.
+            </p>
+        <h3>Methods</h3>
+    <h4>IsComment(System.String)</h4>
+    <p>
+            Return a value indicating whether the caller-specified value is a
+            Comment.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Text value to inspect.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the caller's value can be identified as a comment. Otherwise,
+            false.
+            </p>
+    <h4>Parse(PyDoc.CommentInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32)</h4>
+    <p>
+            Parse a single Comment into the caller's collection, and return the
+            next active line index.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of comments to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </p>
+    <hr>
+    <h2>ContainerInfo</h2>
+            <p>
+            Container of references used to pass information about the current level.
+            </p>
+        <h3>Properties</h3>
+    <h4>Classes</h4>
+            <p>
+            Get/Set a reference to the caller's collection of classes.
+            </p>
+        <h4>Comments</h4>
+            <p>
+            Get/Set a reference to the caller's comments.
+            </p>
+        <h4>Imports</h4>
+            <p>
+            Get/Set a reference to the caller's import collection.
+            </p>
+        <h4>Indent</h4>
+            <p>
+            Get/Set the current Indent Level at the caller's location.
+            </p>
+        <h4>Index</h4>
+            <p>
+            Get/Set the current Line Index.
+            </p>
+        <h4>Lines</h4>
+            <p>
+            Get/Set a reference to the collection of source lines used to build
+            items in this container.
+            </p>
+        <h4>Logic</h4>
+            <p>
+            Get/Set a reference to the caller's collection of conditional and
+            branching logic.
+            </p>
+        <h4>Methods</h4>
+            <p>
+            Get/Set a reference to the caller's collection of methods.
+            </p>
+        <h4>Parent</h4>
+            <p>
+            Get/Set a reference to the Parent object to which the members belong.
+            </p>
+        <h4>Variables</h4>
+            <p>
+            Get/Set a reference to the caller's collection of variables.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ ContainerInfo</h4>
+    <p>
+            Create a new Instance of the ContainerInfo Item.
+            </p>
+    <h4>
+ Constructor:
+ ContainerInfo(PyDoc.ContainerBase,PyDoc.ClassInfoCollection,PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,PyDoc.LogicInfoCollection,PyDoc.MethodInfoCollection,PyDoc.VariableInfoCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Create a new Instance of the ContainerInfo Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parent</b>: 
+            A reference to the calling object, to be referenced as the parent of
+            the following collections.
+            </p>
+    <p><b>classes</b>: 
+            Reference to the active collection of classes, or null.
+            </p>
+    <p><b>imports</b>: 
+            Reference to the active collection of imports, or null.
+            </p>
+    <p><b>lines</b>: 
+            Reference to the source text line collection.
+            </p>
+    <p><b>logic</b>: 
+            Reference to the active collection of unimplemented conditional
+            logic entries, or null.
+            </p>
+    <p><b>methods</b>: 
+            Reference to the active collection of methods, or null.
+            </p>
+    <p><b>variables</b>: 
+            Reference to the active collection of variables and expressions, or
+            null.
+            </p>
+    <p><b>index</b>: 
+            Current index within the source text lines collection.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level under observation.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments to be filled with any unassigned comments
+            found at the current level.
+            </p>
+    <hr>
+    <h2>ExpressionStack</h2>
+            <p>
+            Stack of ExpressionItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>ExpressionEntities(System.String)</h4>
+    <p>
+            Return a list of all named entities found in the caller's expression.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>expression</b>: 
+            Expression to inspect.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Collection of all entities found in the expression, if any. If no
+            entities were found, a empty collection is returned.
+            </p>
+    <h4>FunctionClass(System.String,System.Int32)</h4>
+    <p>
+            Return the class-access hierarchy portion of a function call, if any.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>expression</b>: 
+            The expression to inspect.
+            </p>
+    <p><b>startingIndex</b>: 
+            The starting index at which to begin searching within the expression.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            If class-access is present, either instance-based or static, the
+            class access sections of the call are returned. Otherwise, an empty
+            collection is provided.
+            </p>
+    <h4>FunctionName(System.String,System.Int32)</h4>
+    <p>
+            Return the function name portion of a function call, if any.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>expression</b>: 
+            The expression to inspect.
+            </p>
+    <p><b>startingIndex</b>: 
+            The starting index at which to begin searching within the expression.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Name of the function, if found. Otherwise, a blank string.
+            </p>
+    <h4>FunctionStarts(System.String)</h4>
+    <p>
+            Return a list of function calls starting locations for the caller's
+            expression.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>expression</b>: 
+            Expression to analyze.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Int collection of 0-based string indices at which functions can be
+            identified as starting, if found. Otherwise, an empty collection.
+            </p>
+    <h4>Push(System.String)</h4>
+    <p>
+            Push a new item onto the stack by member values.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Text value to push to the stack.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Newly created ExpressionItem.
+            </p>
+    <hr>
+    <h2>ExpressionItem</h2>
+            <p>
+            Entry in the stack.
+            </p>
+        <h3>Properties</h3>
+    <h4>Value</h4>
+            <p>
+            Get/Set the basic value of this item.
+            </p>
+        <hr>
+    <h2>FileInfoCollection</h2>
+            <p>
+            Collection of FileInfoItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Add(System.IO.FileInfo)</h4>
+    <p>
+            Add a new item to the collection by member values.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>file</b>: 
+            Reference to a System.FileInfo item to be tracked.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to a newly created and added FileInfoItem representing the
+            caller's file.
+            </p>
+    <h4>Document(PyDoc.FileInfoCollection,System.IO.DirectoryInfo)</h4>
+    <p>
+            Document the statistics for the loaded files.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>files</b>: 
+            Collection of files to document.
+            </p>
+    <p><b>targetFolder</b>: 
+            Target file folder to which rendered files will be written.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Value indicating success, if true.
+            </p>
+    <h4>Parse(System.IO.DirectoryInfo)</h4>
+    <p>
+            Parse all files in the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>projectBase</b>: 
+            Physical base folder of the project input.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the operation was successful. Otherwise, false.
+            </p>
+    <hr>
+    <h2>FileInfoItem</h2>
+            <p>
+            Information about a File.
+            </p>
+            <p>
+            This is not to be confused with the system.io.fileinfo class, which is
+            represented here by the property SystemFile.
+            </p>
+        <h3>Properties</h3>
+    <h4>DirectoryName</h4>
+            <p>
+            Get/Set the Directory Name of this item.
+            </p>
+        <h4>Filename</h4>
+            <p>
+            Get/Set the physical Filename of this item.
+            </p>
+        <h4>Path</h4>
+            <p>
+            Get/Set the Path of the file.
+            </p>
+        <h4>SystemFile</h4>
+            <p>
+            Get/Set a reference to the System FileInfo related to this file.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ FileInfoItem</h4>
+    <p>
+            Create a new Instance of the FileInfoItem Item.
+            </p>
+    <h4>GetDocName</h4>
+    <p>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>Parse(PyDoc.FileInfoItem,System.IO.DirectoryInfo)</h4>
+    <p>
+            Parse the content of the file specified in SystemFile, and return the
+            result.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>file</b>: 
+            File to parse.
+            </p>
+    <p><b>projectBase</b>: 
+            Physical source input directory.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the operation was successful. Otherwise, false.
+            </p>
+    <hr>
+    <h2>ImportInfoCollection</h2>
+            <p>
+            Collection of ImportInfoItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Add(System.String,System.String,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Add a new item to the collection by member values.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>library</b>: 
+            Name of the library to import from.
+            </p>
+    <p><b>import</b>: 
+            Name of the object to import from the specified library, if any. If
+            no object is specified, * is assumed.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level at which this statement is set.
+            </p>
+    <p><b>comments</b>: 
+            Comments to be associated with the new item.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            A reference to the added in the case of a single item, or the last
+            item added in the case of multiple items added by comma delimiter.
+            </p>
+    <h4>Parse(PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse one or more sequential import statements.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of imports to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </p>
+    <h4>Summarize(PyDoc.ImportInfoCollection,PyDoc.IDrillableStat,System.String)</h4>
+    <p>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the collection to be inspected.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>importDescription</b>: 
+            Description to place within the section, as it applies to the caller's
+            context.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            String containing formatted text that can be included in a host file.
+            </p>
+    <hr>
+    <h2>ImportInfoItem</h2>
+            <p>
+            Information about an Import.
+            </p>
+        <h3>Properties</h3>
+    <h4>Comments</h4>
+            <p>
+            Get a reference to the Comments for this Variable.
+            </p>
+        <h4>IndentLevel</h4>
+            <p>
+            Get/Set the Indent Level of this Item.
+            </p>
+        <h4>Library</h4>
+            <p>
+            Get/Set the name of the library from which this import is read.
+            </p>
+        <h4>ObjectName</h4>
+            <p>
+            Get/Set the name of the object or collection to be imported from the
+            specified library.
+            </p>
+        <h4>Pattern</h4>
+            <p>
+            Get the pattern used to match a partial import.
+            </p>
+        <h3>Methods</h3>
+    <h4>GetDocNameLibrary(PyDoc.ImportInfoItem,PyDoc.IDrillableStat)</h4>
+    <p>
+            Return the full document name of this item's library only. Include the
+            prefixes set by parent objects.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the item for which the document name is to be retrieved.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>GetDocNameObject(PyDoc.ImportInfoItem,PyDoc.IDrillableStat)</h4>
+    <p>
+            Return the full document name of this item's object, including the
+            prefixes set by parent objects.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the item for which the document name will be retrieved.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>Parse(PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse one import statement at the current line location.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of imports to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </p>
+    <hr>
+    <h2>LogicInfoCollection</h2>
+            <p>
+            Collection of LogicInfoItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Parse(PyDoc.LogicInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse a conditional or branching logic item and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of variables to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            The new index at which to continue searching for the next entity.
+            </p>
+    <hr>
+    <h2>LogicInfoItem</h2>
+            <p>
+            Conditional and Branching Logic partial implementations for
+            extensibility.
+            </p>
+        <h3>Properties</h3>
+    <h4>Pattern</h4>
+            <p>
+            Get the pattern for partially matching a condiditional or branching
+            logic pattern.
+            </p>
+        <h3>Methods</h3>
+    <h4>Parse(PyDoc.LogicInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse the contents of a conditional or branching login item
+            and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Sibling logic definitions at this level.
+            </p>
+    <p><b>lines</b>: 
+            Source text lines.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </p>
+    <hr>
+    <h2>MethodInfoCollection</h2>
+            <p>
+            Collection of MethodInfoItem Items.
+            </p>
+        <h3>Properties</h3>
+    <h4>ParentStat</h4>
+            <p>
+            Get/Set a reference to the Parent Statistic.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ MethodInfoCollection(PyDoc.IDrillableStat)</h4>
+    <p>
+            Create a new Instance of the MethodInfoCollection Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <h4>Add(PyDoc.MethodInfoItem)</h4>
+    <p>
+            Add a new item to the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the item to be added.
+            </p>
+    <h4>Document(PyDoc.MethodInfoCollection,System.IO.DirectoryInfo)</h4>
+    <p>
+            Individually document each method in the specified collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>methods</b>: 
+            Collection of methods to document.
+            </p>
+    <p><b>targetFolder</b>: 
+            Target file folder to which all files will be written.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Value indicating success, if true.
+            </p>
+    <h4>EnumerateClasses(PyDoc.MethodInfoItem)</h4>
+    <p>
+            Return an enumeration of the member classes of the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the method for which classes will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member classes.
+            </p>
+    <h4>EnumerateMethods(PyDoc.MethodInfoItem)</h4>
+    <p>
+            Return an enumeration of the child methods in the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the method for which methods will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member methods.
+            </p>
+    <h4>EnumerateVariables(PyDoc.MethodInfoItem)</h4>
+    <p>
+            Return an enumeration of the variables in the specified instance.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the method for which variables will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of member variables.
+            </p>
+    <h4>Parse(PyDoc.MethodInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse a method and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of methods to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            The new index at which to continue searching for the next entity.
+            </p>
+    <h4>Summarize(PyDoc.MethodInfoCollection,PyDoc.IDrillableStat,System.String)</h4>
+    <p>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the collection to be inspected.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>methodDescription</b>: 
+            Description to place within the section, as it applies to the caller's
+            context.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            String containing formatted text that can be included in a host file.
+            </p>
+    <hr>
+    <h2>MethodInfoItem</h2>
+            <p>
+            Information about a Method.
+            </p>
+        <h3>Properties</h3>
+    <h4>Pattern</h4>
+            <p>
+            Get the pattern for partially matching a Method.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ MethodInfoItem</h4>
+    <p>
+            Create a new Instance of the MethodInfoItem Item.
+            </p>
+    <h4>
+ Constructor:
+ MethodInfoItem(PyDoc.MethodInfoCollection)</h4>
+    <p>
+            Create a new Instance of the MethodStatItem Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parent</b>: 
+            Reference to the parent collection to which this item belongs.
+            </p>
+    <h4>Parse(PyDoc.MethodInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse the contents of a method and its members.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Sibling method definitions at this level.
+            </p>
+    <p><b>lines</b>: 
+            Source text lines.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source.
+            </p>
+    <p><b>indent</b>: 
+            Current indent level.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </p>
+    <hr>
+    <h2>NameValuesCollection</h2>
+            <p>
+            Collection of NameValuesItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Add(System.String,System.String,System.Boolean)</h4>
+    <p>
+            Add a single Name and Value to the list.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name to add, if unique.
+            </p>
+    <p><b>value</b>: 
+            Value to add.
+            </p>
+    <p><b>unique</b>: 
+            Value indicating whether the value parameter should be added to the
+            collection unconditionally, or only in the case that it will be unique
+            in the Values collection.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to a newly created NameValuesItem, if the name was unique in
+            collection. Otherwise, a reference to the previously existing item.
+            </p>
+    <h4>Add(System.String,System.Collections.Generic.List{System.String},System.Boolean)</h4>
+    <p>
+            Add an item by member values, inserting multiple values, as
+            appropriate.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>name</b>: 
+            Name to be added to the collection, if new, or to be appended to if the
+            name already exists.
+            </p>
+    <p><b>values</b>: 
+            Collection of values to add to the item with the specified name.
+            </p>
+    <p><b>unique</b>: 
+            Value indicating whether each of the values must be unique in the
+            collection to be appended to the Values collection, or whether they
+            will be added unconditionally.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to a newly created NameValuesItem, if the name was unique in
+            collection. Otherwise, a reference to the previously existing item.
+            </p>
+    <hr>
+    <h2>NameValuesItem</h2>
+            <p>
+            Helper item for storing multiple values under a single name.
+            </p>
+        <h3>Properties</h3>
+    <h4>Name</h4>
+            <p>
+            Get/Set the Name of this item.
+            </p>
+        <h4>Values</h4>
+            <p>
+            Get a reference to the collection of values on this item.
+            </p>
+        <hr>
+    <h2>Program</h2>
+            <p>
+            The main instance of the PyDoc application.
+            </p>
+            <p>
+            This application creates readable, cross-referenced information from
+            Python source.
+            </p>
+        <h3>Properties</h3>
+    <h4>Files</h4>
+            <p>
+            Get a reference to the collection of files on this instance.
+            </p>
+        <h4>InputPath</h4>
+            <p>
+            Get/Set the Input Path.
+            </p>
+        <h4>OutputPath</h4>
+            <p>
+            Get/Set the Output Path.
+            </p>
+        <h4>ShowSyntax</h4>
+            <p>
+            Get/Set a value indicating whether to show the usage syntax.
+            </p>
+        <h4>Verbosity</h4>
+            <p>
+            Get/Set the Verbosity level of this instance.
+            </p>
+        <h4>WaitAfterEnd</h4>
+            <p>
+            Get/Set a value indicating whether to wait for keypress after the end
+            of the application.
+            </p>
+        <h3>Methods</h3>
+    <h4>Main(System.String[])</h4>
+    <p>
+            The command-line startup of this application.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>args</b>: 
+            Command-line arguments, following the syntax of /argName[:argValue]
+            </p>
+    <h4>Run</h4>
+    <p>
+            Run the configured instance of the application.
+            </p>
+    <hr>
+    <h2>TextLineCollection</h2>
+            <p>
+            Collection of TextLineItem Items.
+            </p>
+        <h3>Methods</h3>
+    <h4>Add(System.String)</h4>
+    <p>
+            Add a new item to the collection by member values.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Line of text to be added.
+            </p>
+    <h4>AddRange(System.String)</h4>
+    <p>
+            Add a range of lines to the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>text</b>: 
+            Range of lines, each separated by a newline character.
+            </p>
+    <hr>
+    <h2>TextLineItem</h2>
+            <p>
+            A single line of text.
+            </p>
+        <h3>Properties</h3>
+    <h4>Value</h4>
+            <p>
+            Get/Set the Value of this Item.
+            </p>
+        <hr>
+    <h2>Utils</h2>
+            <p>
+            Common utilities for this application.
+            </p>
+        <h3>Fields</h3>
+    <h4>mAssembly</h4>
+            <p>
+            One-time load of Assembly info. Will stay active until application
+            shuts down.
+            </p>
+        <h3>Properties</h3>
+    <h4>StatDefaultCSS</h4>
+            <p>
+            Get the constant Default.css content for the Statistics File.
+            </p>
+        <h4>StatFileFooter</h4>
+            <p>
+            Get the constant portion of the Statistics File Footer.
+            </p>
+        <h4>StatFileHeader</h4>
+            <p>
+            Get the constant portion of the Statistics File Header.
+            </p>
+        <h3>Methods</h3>
+    <h4>GetCommentSingle(System.String)</h4>
+    <p>
+            Return any single line comment present in the caller's string.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>source</b>: 
+            Source text to inspect for comments.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Any single-line comment found on the line.
+            </p>
+    <h4>GetIndex(System.Text.RegularExpressions.Match,System.String)</h4>
+    <p>
+            Return the source index of the specified Group in the caller-specified
+            Match.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>match</b>: 
+            Reference to the instance of the match to inspect.
+            </p>
+    <p><b>groupName</b>: 
+            Name of the group for which the index will be retrieved.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Character index of the match group in the source string, if found.
+            Otherwise, -1.
+            </p>
+    <h4>GetLength(System.Text.RegularExpressions.Match,System.String)</h4>
+    <p>
+            Return the length of the specified Group in the caller-specified Match.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>match</b>: 
+            Reference to the instance of the match to inspect.
+            </p>
+    <p><b>groupName</b>: 
+            Name of the group for which the length of the match will be retrieved.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Length of the matching group, if found. Otherwise, 0.
+            </p>
+    <h4>GetRelativePath(System.String,System.String)</h4>
+    <p>
+            Return the relative directory name, using the difference between the
+            base and a comparison.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>basePath</b>: 
+            Base path to serve as the root.
+            </p>
+    <p><b>comparePath</b>: 
+            Path to be compared with the base.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Difference between base and comparison paths, if a difference existed.
+            Otherwise, an empty string.
+            </p>
+    <h4>GetResourceTextEmbedded(System.String)</h4>
+    <p>
+            Return the text found in the specified embedded resource.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>resourceName</b>: 
+            Full name of the embedded resource. Recall that embedded resources are
+            prefixed by the default namespace for the project. In this case, PyDoc.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Text from the specified embedded resource, if found. Otherwise, an
+            empty string.
+            </p>
+    <h4>GetTail(PyDoc.TextLineCollection,System.Int32,System.String,System.Text.StringBuilder,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Find and set the tail content in the caller's string builder, returning
+            the next active line.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>lines</b>: 
+            Collection of source text lines.
+            </p>
+    <p><b>index</b>: 
+            Current index within the source text collection.
+            </p>
+    <p><b>tailPattern</b>: 
+            Pattern to be matched in order to find tail.
+            </p>
+    <p><b>target</b>: 
+            Target content string builder.
+            </p>
+    <p><b>comments</b>: 
+            Comments found on the content that will need to be handled by
+            the caller.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next active line, if tail found. Otherwise, -1.
+            </p>
+    <h4>GetValue(System.Text.RegularExpressions.Match,System.String)</h4>
+    <p>
+            Return the value of the specified Group in the caller-specified Match.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>match</b>: 
+            Reference to the instance of the match to inspect.
+            </p>
+    <p><b>groupName</b>: 
+            Name of the group for which the value of the match will be retrieved.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Value of the match found in the specified group of the provided match,
+            if any. If no match or group were found, the return value is an empty
+            string.
+            </p>
+    <h4>GetVariableAssignment(PyDoc.TextLineCollection,System.Int32,System.Text.StringBuilder,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Find and place the variable expression content in the caller's string
+            builder, returning the next active line.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>lines</b>: 
+            Reference to a collection of source lines.
+            </p>
+    <p><b>index</b>: 
+            Current index within the source lines collection.
+            </p>
+    <p><b>target</b>: 
+            Target string builder that will receive the full assignment text
+            of the expression.
+            </p>
+    <p><b>comments</b>: 
+            Comments encountered that will need to be handled by the host.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next active line, if assignment found. Otherwise, -1.
+            </p>
+    <h4>IsTerminated(System.String)</h4>
+    <p>
+            Return a value indicating whether the specified string is terminated.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Value to test for fully terminated expression.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if the value has no enclosing characters, or is fully terminated.
+            Otherwise, false.
+            </p>
+    <h4>ParseAll(PyDoc.ContainerInfo)</h4>
+    <p>
+            Parse all members of the current level.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>container</b>: 
+            Reference to an abstract container that might have multiple classes,
+            methods, and variables.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next line index within the source. If no matches were found at this
+            level, this value will be equal to the container.Index value.
+            </p>
+    <h4>QuoteIsOpen(System.String)</h4>
+    <p>
+            Return a value indicating whether a quote is open at the end of the
+            provided line.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Value to inspect.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            True if quoted text within the value has been left unterminated.
+            </p>
+    <h4>RemoveCommentSingle(System.String)</h4>
+    <p>
+            Return the supplied line with any single line comment removed.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>source</b>: 
+            Text to inspect.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Source text with any single-line comments removed.
+            </p>
+    <h4>RemoveFileExtension(System.String,System.Boolean)</h4>
+    <p>
+            Return the caller's filename with the extension removed.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Filename to inspect.
+            </p>
+    <p><b>includePath</b>: 
+            Value indicating whether any path portion found on the filename should
+            be retained in the result.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Filename without extension.
+            </p>
+    <h4>ReplaceNonAN(System.String,System.String)</h4>
+    <p>
+            Return a value where the caller's non-alphanumeric strings have been
+            replaced.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Value to inspect for non-alphanumeric characters.
+            </p>
+    <p><b>replacement</b>: 
+            Pattern to insert in place of any non-alphanumeric characters found.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Version of value that has had all instances of alphanumeric characters
+            replaced with the replacement pattern.
+            </p>
+    <h4>ReplaceNonAN(System.String,System.String,System.Char[])</h4>
+    <p>
+            Return a value where the caller's non-alphanumeric strings have been
+            replaced.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>value</b>: 
+            Value to inspect for non-alphanumeric characters.
+            </p>
+    <p><b>replacement</b>: 
+            Pattern to insert in place of any non-alphanumeric characters found.
+            </p>
+    <p><b>exceptions</b>: 
+            Non-alphanumeric exceptions to allow. For example, dash and underscore
+            are commonly legal in named entities.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Version of value that has had all instances of alphanumeric characters
+            replaced with the replacement pattern.
+            </p>
+    <h4>ToHtml(System.String)</h4>
+    <p>
+            Return the caller's content, formatted for HTML.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>content</b>: 
+            Content to format.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Caller's content, valid for inclusion within HTML.
+            </p>
+    <hr>
+    <h2>VariableInfoCollection</h2>
+            <p>
+            Collection of VariableInfoItem Items.
+            </p>
+        <h3>Properties</h3>
+    <h4>ParentStat</h4>
+            <p>
+            Get/Set a reference to the Parent Statistic.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ VariableInfoCollection(PyDoc.IDrillableStat)</h4>
+    <p>
+            Create a new Instance of the VariableInfoCollection Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <h4>Add(PyDoc.VariableInfoItem)</h4>
+    <p>
+            Add a new item to the collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>item</b>: 
+            Reference to the item to be added.
+            </p>
+    <h4>Document(PyDoc.VariableInfoCollection,System.IO.DirectoryInfo)</h4>
+    <p>
+            Individually document each variable in the specified collection.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>variables</b>: 
+            Collection of variables to be documented.
+            </p>
+    <p><b>targetFolder</b>: 
+            Reference to the output file folder.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Value indicating success, if true.
+            </p>
+    <h4>EnumerateCalls(PyDoc.IDrillableStat,PyDoc.NameValuesItem)</h4>
+    <p>
+            Return a list of enumerated calls made from this variable.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>name</b>: 
+            Name of the variable to enumerate for.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of function calls placed by this variable.
+            </p>
+    <h4>EnumerateObjects(PyDoc.IDrillableStat,PyDoc.NameValuesItem)</h4>
+    <p>
+            Return a list of enumerated classes referenced from this variable.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>name</b>: 
+            Name of the variable for which object references will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of object references made by the specified variable.
+            </p>
+    <h4>EnumerateReferences(PyDoc.IDrillableStat,PyDoc.NameValuesItem)</h4>
+    <p>
+            Return a list of enumerated variables referenced from this variable.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>name</b>: 
+            Name of the variable for which references will be enumerated.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Formatted list of references to other variables made by the variable
+            of the specified name within this scope.
+            </p>
+    <h4>GetCommentsForName(PyDoc.VariableInfoCollection,System.String)</h4>
+    <p>
+            Return all of the comments found in the collection for the specified
+            variable name.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the variables collection to be searched for matching
+            names.
+            </p>
+    <p><b>name</b>: 
+            Name of the variable for which comments will be returned.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Concatenated string of all comments assigned to the variable of the
+            specified name.
+            </p>
+    <h4>GetName(PyDoc.VariableInfoCollection,System.String)</h4>
+    <p>
+            Return the first item from the collection having the specified name.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the variables collection to search.
+            </p>
+    <p><b>name</b>: 
+            Name of the variable to find.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Reference to the first item found matching the specified name, if
+            found. Otherwise, null.
+            </p>
+    <h4>Parse(PyDoc.VariableInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse a variable and its constituents.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of variables to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            The new index at which to continue searching for the next entity.
+            </p>
+    <h4>Summarize(PyDoc.VariableInfoCollection,PyDoc.IDrillableStat,System.String)</h4>
+    <p>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>collection</b>: 
+            Reference to the collection to be inspected.
+            </p>
+    <p><b>parentStat</b>: 
+            Reference to the parent statistics controller.
+            </p>
+    <p><b>variableDescription</b>: 
+            Description to place within the section, as it applies to the caller's
+            context.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            String containing formatted text that can be included in a host file.
+            </p>
+    <hr>
+    <h2>VariableInfoItem</h2>
+            <p>
+            Information about a Variable.
+            </p>
+        <h3>Properties</h3>
+    <h4>Assignment</h4>
+            <p>
+            Get/Set the assignment value of this item.
+            </p>
+        <h4>Comments</h4>
+            <p>
+            Get a reference to the Comments for this Variable.
+            </p>
+        <h4>DocPrefix</h4>
+            <p>
+            Get/Set the Document Prefix used by items of this type.
+            </p>
+        <h4>IndentLevel</h4>
+            <p>
+            Get/Set the Indent Level of this Item.
+            </p>
+        <h4>LineNumber</h4>
+            <p>
+            Get/Set the Line Number at which this instance was found.
+            </p>
+        <h4>Name</h4>
+            <p>
+            Get/Set the Name of the Variable.
+            </p>
+        <h4>Operator</h4>
+            <p>
+            Get/Set the operator used for this variable assignment.
+            </p>
+        <h4>Parent</h4>
+            <p>
+            Get/Set a reference to the Parent collection.
+            </p>
+        <h4>Pattern</h4>
+            <p>
+            Get the pattern for partially matching a Variable.
+            </p>
+        <h3>Methods</h3>
+    <h4>
+ Constructor:
+ VariableInfoItem</h4>
+    <p>
+            Create a new Instance of the VariableStatItem Item.
+            </p>
+    <h4>
+ Constructor:
+ VariableInfoItem(PyDoc.VariableInfoCollection)</h4>
+    <p>
+            Create a new Instance of the VariableStatItem Item.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>parent</b>: 
+            Reference to the parent collection to which this item belongs.
+            </p>
+    <h4>GetDocName</h4>
+    <p>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </p>
+    <h4>Parse(PyDoc.VariableInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)</h4>
+    <p>
+            Parse the specified line, creating a Variable definition where
+            appropriate.
+            </p>
+    <h5>Parameters</h5>
+    <p><b>values</b>: 
+            Collection of variables to which matching items will be appended.
+            </p>
+    <p><b>lines</b>: 
+            Collection of source text lines to inspect.
+            </p>
+    <p><b>index</b>: 
+            Current line index within the source file collection.
+            </p>
+    <p><b>indent</b>: 
+            Current source indent spacing from left margin.
+            </p>
+    <p><b>comments</b>: 
+            Collection of comments not yet assigned to objects.
+            </p>
+    <h5>Return Value</h5>
+    <p><b>Return Value</b>: 
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </p>
+  </body>
+</html>

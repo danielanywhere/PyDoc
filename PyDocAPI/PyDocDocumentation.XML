@@ -1,0 +1,2018 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PyDoc</name>
+    </assembly>
+    <members>
+        <member name="T:PyDoc.ClassInfoCollection">
+            <summary>
+            Collection of ClassInfoItem Items.
+            </summary>
+        </member>
+        <member name="T:PyDoc.IStatCollection">
+            <summary>
+            Collection of Statistics.
+            </summary>
+        </member>
+        <member name="P:PyDoc.IStatCollection.ParentStat">
+            <summary>
+            Get/Set a reference to the Parent Statistic.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.#ctor(PyDoc.IDrillableStat)">
+            <summary>
+            Create a new Instance of the ClassStatCollection Item.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.Add(PyDoc.ClassInfoItem)">
+            <summary>
+            Add a new item to the collection.
+            </summary>
+            <param name="item">
+            Reference to the item to be added.
+            </param>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.Document(PyDoc.ClassInfoCollection,System.IO.DirectoryInfo)">
+            <summary>
+            Individually document each class in the specified collection.
+            </summary>
+            <param name="classes">
+            Collection of classes to document.
+            </param>
+            <param name="targetFolder">
+            Target file folder to which rendered files will be written.
+            </param>
+            <returns>
+            Value indicating success, if true.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.EnumerateClasses(PyDoc.ClassInfoItem)">
+            <summary>
+            Return an enumeration of the child classes of the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the class for which sub-classes will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member classes.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.EnumerateMethods(PyDoc.ClassInfoItem)">
+            <summary>
+            Return an enumeration of the methods in the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the class for which methods will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member methods.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.EnumerateVariables(PyDoc.ClassInfoItem)">
+            <summary>
+            Return an enumeration of the variables in the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the class for which variables will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member variables.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.Parse(PyDoc.ClassInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse a class and its members.
+            </summary>
+            <param name="values">
+            Collection of variables to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            The new index at which to continue searching for the next entity.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ClassInfoCollection.Summarize(PyDoc.ClassInfoCollection,PyDoc.IDrillableStat,System.String)">
+            <summary>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </summary>
+            <param name="collection">
+            Reference to the collection to be inspected.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="classDescription">
+            Description to place within the section, as it applies to the caller's
+            context.
+            </param>
+            <returns>
+            String containing formatted text that can be included in a host file.
+            </returns>
+        </member>
+        <member name="P:PyDoc.ClassInfoCollection.ParentStat">
+            <summary>
+            Get/Set a reference to the Parent Statistic.
+            </summary>
+        </member>
+        <member name="T:PyDoc.ClassInfoItem">
+            <summary>
+            Information about a class and its makeup.
+            </summary>
+        </member>
+        <member name="T:PyDoc.ContainerBase">
+            <summary>
+            Base class used to create full container items.
+            </summary>
+            <remarks>
+            <para>
+            This class doesn't include the static Parse method with the signature:
+            <blockquote>
+            public static int Parse(XInfoCollection values,
+            <blockquote>
+             TextLineCollection lines, int index, int indent,<br />
+             CommentInfoCollection comments)
+            </blockquote>
+            </blockquote>
+            </para>
+            <para>
+            or the static Pattern property with the signature:
+            <blockquote>
+            public static string Pattern { get { return mPattern; } }
+            </blockquote>
+            </para>
+            <para>
+            Parse method and Pattern property must both be implemented by you.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:PyDoc.IDrillableStat">
+            <summary>
+            Type of Statistic that can be drilled down indefinitely.
+            </summary>
+            <remarks>
+            In this application, the drillable entities are File, Methods, Classes,
+            and Conditional Logic items. However, only Files, Classes, and Methods
+            are extracted this version.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.GetDocName">
+            <summary>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </summary>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.GetFile">
+            <summary>
+            Return a reference to the file in which this item is found.
+            </summary>
+            <returns>
+            Reference to the file containing this object, if found. Otherwise,
+            null.
+            </returns>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.GetMemberName(System.String)">
+            <summary>
+            Return a reference to a member variable instance, class definition, or
+            method definition having the specified name.
+            </summary>
+            <param name="name">
+            Name of the class or variable to search for.
+            </param>
+            <returns>
+            Reference to either a variable or IDrillableStat constituting the
+            member, if found. Otherwise, null.
+            </returns>
+            <remarks>
+            The search only includes direct members of the item starting the
+            search.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.GetObjectName(System.String)">
+            <summary>
+            Return a reference to a variable instance or class definition to
+            set the scope for the next search.
+            </summary>
+            <param name="name">
+            Name of the class or variable to search for.
+            </param>
+            <returns>
+            Reference to either a variable or IDrillableStat constituting a
+            valid scope, if found. Otherwise, null.
+            </returns>
+            <remarks>
+            The search only includes branches and imports at the current level and
+            above.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.IsClass(System.String)">
+            <summary>
+            Return a value indicating whether the specified name is a class in the
+            current scope.
+            </summary>
+            <param name="name">
+            Name of the entity to search for.
+            </param>
+            <returns>
+            True if the specified name represents a class. Otherwise, false.
+            </returns>
+        </member>
+        <member name="M:PyDoc.IDrillableStat.IsVariable(System.String)">
+            <summary>
+            Return a value indicating whether the specified name is a variable in
+            the current scope.
+            </summary>
+            <param name="name">
+            Name of the entity to search for.
+            </param>
+            <returns>
+            True if the specified name represents a variable. Otherwise, false.
+            </returns>
+        </member>
+        <member name="P:PyDoc.IDrillableStat.DocPrefix">
+            <summary>
+            Get/Set the documentation prefix of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.IDrillableStat.Name">
+            <summary>
+            Get/Set the name of the item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ContainerBase.#ctor">
+            <summary>
+            Create a new Instance of the ContainerBase Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ContainerBase.ClearAll">
+            <summary>
+            Clear all collections.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ContainerBase.GetDocName">
+            <summary>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </summary>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ContainerBase.GetMemberName(System.String)">
+            <summary>
+            Return a reference to a member variable instance, class definition, or
+            method definition having the specified name.
+            </summary>
+            <param name="name">
+            Name of the class or variable to search for.
+            </param>
+            <returns>
+            Reference to either a variable or IDrillableStat constituting the
+            member, if found. Otherwise, null.
+            </returns>
+            <remarks>
+            <para>
+            The search only includes direct members of the item starting the
+            search.
+            </para>
+            <para>
+            The main difference between GetObjectName and GetMemberName is
+            that GetObjectName will drill outward if a match is not found at this
+            level. GetMemberName searches only at the current level.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ContainerBase.GetObjectName(System.String)">
+            <summary>
+            Return a reference to a variable instance or class definition to
+            set the scope for the next search.
+            </summary>
+            <param name="name">
+            Name of the class or variable to search for.
+            </param>
+            <returns>
+            Reference to either a variable or IDrillableStat constituting a
+            valid scope, if found. Otherwise, null.
+            </returns>
+            <remarks>
+            <para>
+            The search only includes branches and imports at the current level and
+            above.
+            </para>
+            <para>
+            The main difference between GetObjectName and GetMemberName is
+            that GetObjectName will drill outward if a match is not found at this
+            level. GetMemberName searches only at the current level.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ContainerBase.GetContainerInfo(PyDoc.ContainerBase,PyDoc.TextLineCollection,System.Int32,System.Int32)">
+            <summary>
+            Return a reference to a filled Container Info describing the contents
+            of the caller's instance.
+            </summary>
+            <param name="container">
+            Abstract container having the traits of ContainerBase.
+            </param>
+            <param name="lines">
+            Collection of source text lines.
+            </param>
+            <param name="index">
+            Current index within the source text collection.
+            </param>
+            <param name="indent">
+            Current indent level at which parsing is active.
+            </param>
+            <returns>
+            Reference to the container that generically describes the contents of
+            the caller's instance.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ContainerBase.GetFile">
+            <summary>
+            Return a reference to the file in which this item is found.
+            </summary>
+            <returns>
+            Reference to the file containing this object, if found. Otherwise,
+            null.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ContainerBase.IsClass(System.String)">
+            <summary>
+            Return a value indicating whether the specified name is a class in the
+            current scope.
+            </summary>
+            <param name="name">
+            Name of the entity to search for.
+            </param>
+            <returns>
+            True if the specified name represents a class. Otherwise, false.
+            </returns>
+            <remarks>
+            This call will drill outward if a match is not found at the current
+            level.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ContainerBase.IsVariable(System.String)">
+            <summary>
+            Return a value indicating whether the specified name is a variable in
+            the current scope.
+            </summary>
+            <param name="name">
+            Name of the entity to search for.
+            </param>
+            <returns>
+            True if the specified name represents a variable. Otherwise, false.
+            </returns>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Classes">
+            <summary>
+            Get a reference to the collection of Classes appearing in this level.
+            </summary>
+            <remarks>
+            These are embedded classes.
+            </remarks>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Comments">
+            <summary>
+            Get a reference to the Comments for this Method.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Content">
+            <summary>
+            Get/Set the base Content of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.DocPrefix">
+            <summary>
+            Get/Set the Document Prefix used by items of this type.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Imports">
+            <summary>
+            Get a reference to the collection of Import items.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.IndentLevel">
+            <summary>
+            Get/Set the Indent Level of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.LineNumber">
+            <summary>
+            Get/Set the Line Number at which this instance was found.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Logic">
+            <summary>
+            Get a reference to the non-implemented branching and conditional logic
+            members of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Methods">
+            <summary>
+            Get a reference to the collection of Methods appearing in this level.
+            </summary>
+            <remarks>
+            These are embedded methods.
+            </remarks>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Name">
+            <summary>
+            Get/Set the Name of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Parameters">
+            <summary>
+            Get/Set the Parameters of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Parent">
+            <summary>
+            Get/Set a reference to the Parent collection.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerBase.Variables">
+            <summary>
+            Get a reference to the collection of Variables appearing in this level.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ClassInfoItem.#ctor">
+            <summary>
+            Create a new Instance of the ClassInfoItem Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ClassInfoItem.#ctor(PyDoc.ClassInfoCollection)">
+            <summary>
+            Create a new Instance of the ClassInfoItem Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ClassInfoItem.Parse(PyDoc.ClassInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse the contents of a class and its members.
+            </summary>
+            <param name="values">
+            Sibling class definitions at this level.
+            </param>
+            <param name="lines">
+            Source text lines.
+            </param>
+            <param name="index">
+            Current line index within the source.
+            </param>
+            <param name="indent">
+            Current indent level.
+            </param>
+            <param name="comments">
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </param>
+            <returns>
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </returns>
+        </member>
+        <member name="P:PyDoc.ClassInfoItem.Pattern">
+            <summary>
+            Get the pattern for partially matching a Class.
+            </summary>
+        </member>
+        <member name="T:PyDoc.CommentInfoCollection">
+            <summary>
+            Collection of CommentInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.CommentInfoCollection.Add(System.String,System.Int32)">
+            <summary>
+            Add an item to the collection by member values.
+            </summary>
+            <param name="value">
+            Comment text to add.
+            </param>
+            <param name="lineNumber">
+            Line number associated with this entry.
+            </param>
+            <returns>
+            Reference to a newly created and added comment.
+            </returns>
+        </member>
+        <member name="M:PyDoc.CommentInfoCollection.AddRange(System.String,System.Int32)">
+            <summary>
+            Add a range of comments to the collection.
+            </summary>
+            <param name="value">
+            Range of comments to be added, as delimited by newline characters.
+            </param>
+            <param name="lineNumber">
+            Line index at which the comment was found in source.
+            </param>
+        </member>
+        <member name="M:PyDoc.CommentInfoCollection.Parse(PyDoc.CommentInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32)">
+            <summary>
+            Parse the comments at the current and following lines.
+            </summary>
+            <param name="values">
+            Collection of comments to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <returns>
+            The Line Index following the comments.
+            </returns>
+            <remarks>
+            The line in lines[index] must start with optional space and a
+            comment sign, or no comment will be found in this call.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.CommentInfoCollection.ToString">
+            <summary>
+            Return the string representation of all comments in the collection.
+            </summary>
+            <returns>
+            Combination of all comments in this collection, joined by newline.
+            </returns>
+        </member>
+        <member name="T:PyDoc.CommentInfoItem">
+            <summary>
+            Information about a Comment.
+            </summary>
+        </member>
+        <member name="M:PyDoc.CommentInfoItem.IsComment(System.String)">
+            <summary>
+            Return a value indicating whether the caller-specified value is a
+            Comment.
+            </summary>
+            <param name="value">
+            Text value to inspect.
+            </param>
+            <returns>
+            True if the caller's value can be identified as a comment. Otherwise,
+            false.
+            </returns>
+        </member>
+        <member name="M:PyDoc.CommentInfoItem.Parse(PyDoc.CommentInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32)">
+            <summary>
+            Parse a single Comment into the caller's collection, and return the
+            next active line index.
+            </summary>
+            <param name="values">
+            Collection of comments to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <returns>
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </returns>
+        </member>
+        <member name="P:PyDoc.CommentInfoItem.LineNumber">
+            <summary>
+            Get/Set the Line Number at which this instance was found.
+            </summary>
+        </member>
+        <member name="P:PyDoc.CommentInfoItem.Pattern">
+            <summary>
+            Get the partial pattern for matching a full line comment.
+            </summary>
+        </member>
+        <member name="P:PyDoc.CommentInfoItem.Value">
+            <summary>
+            Get/Set the Value of this Item.
+            </summary>
+        </member>
+        <member name="T:PyDoc.ContainerInfo">
+            <summary>
+            Container of references used to pass information about the current level.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ContainerInfo.#ctor">
+            <summary>
+            Create a new Instance of the ContainerInfo Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ContainerInfo.#ctor(PyDoc.ContainerBase,PyDoc.ClassInfoCollection,PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,PyDoc.LogicInfoCollection,PyDoc.MethodInfoCollection,PyDoc.VariableInfoCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Create a new Instance of the ContainerInfo Item.
+            </summary>
+            <param name="parent">
+            A reference to the calling object, to be referenced as the parent of
+            the following collections.
+            </param>
+            <param name="classes">
+            Reference to the active collection of classes, or null.
+            </param>
+            <param name="imports">
+            Reference to the active collection of imports, or null.
+            </param>
+            <param name="lines">
+            Reference to the source text line collection.
+            </param>
+            <param name="logic">
+            Reference to the active collection of unimplemented conditional
+            logic entries, or null.
+            </param>
+            <param name="methods">
+            Reference to the active collection of methods, or null.
+            </param>
+            <param name="variables">
+            Reference to the active collection of variables and expressions, or
+            null.
+            </param>
+            <param name="index">
+            Current index within the source text lines collection.
+            </param>
+            <param name="indent">
+            Current indent level under observation.
+            </param>
+            <param name="comments">
+            Collection of comments to be filled with any unassigned comments
+            found at the current level.
+            </param>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Classes">
+            <summary>
+            Get/Set a reference to the caller's collection of classes.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Comments">
+            <summary>
+            Get/Set a reference to the caller's comments.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Imports">
+            <summary>
+            Get/Set a reference to the caller's import collection.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Indent">
+            <summary>
+            Get/Set the current Indent Level at the caller's location.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Index">
+            <summary>
+            Get/Set the current Line Index.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Lines">
+            <summary>
+            Get/Set a reference to the collection of source lines used to build
+            items in this container.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Logic">
+            <summary>
+            Get/Set a reference to the caller's collection of conditional and
+            branching logic.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Methods">
+            <summary>
+            Get/Set a reference to the caller's collection of methods.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Parent">
+            <summary>
+            Get/Set a reference to the Parent object to which the members belong.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ContainerInfo.Variables">
+            <summary>
+            Get/Set a reference to the caller's collection of variables.
+            </summary>
+        </member>
+        <member name="T:PyDoc.ExpressionStack">
+            <summary>
+            Stack of ExpressionItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ExpressionStack.ExpressionEntities(System.String)">
+            <summary>
+            Return a list of all named entities found in the caller's expression.
+            </summary>
+            <param name="expression">
+            Expression to inspect.
+            </param>
+            <returns>
+            Collection of all entities found in the expression, if any. If no
+            entities were found, a empty collection is returned.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ExpressionStack.FunctionClass(System.String,System.Int32)">
+            <summary>
+            Return the class-access hierarchy portion of a function call, if any.
+            </summary>
+            <param name="expression">
+            The expression to inspect.
+            </param>
+            <param name="startingIndex">
+            The starting index at which to begin searching within the expression.
+            </param>
+            <returns>
+            If class-access is present, either instance-based or static, the
+            class access sections of the call are returned. Otherwise, an empty
+            collection is provided.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ExpressionStack.FunctionName(System.String,System.Int32)">
+            <summary>
+            Return the function name portion of a function call, if any.
+            </summary>
+            <param name="expression">
+            The expression to inspect.
+            </param>
+            <param name="startingIndex">
+            The starting index at which to begin searching within the expression.
+            </param>
+            <returns>
+            Name of the function, if found. Otherwise, a blank string.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ExpressionStack.FunctionStarts(System.String)">
+            <summary>
+            Return a list of function calls starting locations for the caller's
+            expression.
+            </summary>
+            <param name="expression">
+            Expression to analyze.
+            </param>
+            <returns>
+            Int collection of 0-based string indices at which functions can be
+            identified as starting, if found. Otherwise, an empty collection.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ExpressionStack.Push(System.String)">
+            <summary>
+            Push a new item onto the stack by member values.
+            </summary>
+            <param name="value">
+            Text value to push to the stack.
+            </param>
+            <returns>
+            Newly created ExpressionItem.
+            </returns>
+        </member>
+        <member name="T:PyDoc.ExpressionItem">
+            <summary>
+            Entry in the stack.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ExpressionItem.Value">
+            <summary>
+            Get/Set the basic value of this item.
+            </summary>
+        </member>
+        <member name="T:PyDoc.FileInfoCollection">
+            <summary>
+            Collection of FileInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.FileInfoCollection.Add(System.IO.FileInfo)">
+            <summary>
+            Add a new item to the collection by member values.
+            </summary>
+            <param name="file">
+            Reference to a System.FileInfo item to be tracked.
+            </param>
+            <returns>
+            Reference to a newly created and added FileInfoItem representing the
+            caller's file.
+            </returns>
+        </member>
+        <member name="M:PyDoc.FileInfoCollection.Document(PyDoc.FileInfoCollection,System.IO.DirectoryInfo)">
+            <summary>
+            Document the statistics for the loaded files.
+            </summary>
+            <param name="files">
+            Collection of files to document.
+            </param>
+            <param name="targetFolder">
+            Target file folder to which rendered files will be written.
+            </param>
+            <returns>
+            Value indicating success, if true.
+            </returns>
+        </member>
+        <member name="M:PyDoc.FileInfoCollection.Parse(System.IO.DirectoryInfo)">
+            <summary>
+            Parse all files in the collection.
+            </summary>
+            <param name="projectBase">
+            Physical base folder of the project input.
+            </param>
+            <returns>
+            True if the operation was successful. Otherwise, false.
+            </returns>
+        </member>
+        <member name="T:PyDoc.FileInfoItem">
+            <summary>
+            Information about a File.
+            </summary>
+            <remarks>
+            This is not to be confused with the system.io.fileinfo class, which is
+            represented here by the property SystemFile.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.FileInfoItem.#ctor">
+            <summary>
+            Create a new Instance of the FileInfoItem Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.FileInfoItem.GetDocName">
+            <summary>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </summary>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.FileInfoItem.Parse(PyDoc.FileInfoItem,System.IO.DirectoryInfo)">
+            <summary>
+            Parse the content of the file specified in SystemFile, and return the
+            result.
+            </summary>
+            <param name="file">
+            File to parse.
+            </param>
+            <param name="projectBase">
+            Physical source input directory.
+            </param>
+            <returns>
+            True if the operation was successful. Otherwise, false.
+            </returns>
+        </member>
+        <member name="P:PyDoc.FileInfoItem.DirectoryName">
+            <summary>
+            Get/Set the Directory Name of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.FileInfoItem.Filename">
+            <summary>
+            Get/Set the physical Filename of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.FileInfoItem.Path">
+            <summary>
+            Get/Set the Path of the file.
+            </summary>
+        </member>
+        <member name="P:PyDoc.FileInfoItem.SystemFile">
+            <summary>
+            Get/Set a reference to the System FileInfo related to this file.
+            </summary>
+        </member>
+        <member name="T:PyDoc.ImportInfoCollection">
+            <summary>
+            Collection of ImportInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ImportInfoCollection.Add(System.String,System.String,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Add a new item to the collection by member values.
+            </summary>
+            <param name="library">
+            Name of the library to import from.
+            </param>
+            <param name="import">
+            Name of the object to import from the specified library, if any. If
+            no object is specified, * is assumed.
+            </param>
+            <param name="indent">
+            Current indent level at which this statement is set.
+            </param>
+            <param name="comments">
+            Comments to be associated with the new item.
+            </param>
+            <returns>
+            A reference to the added in the case of a single item, or the last
+            item added in the case of multiple items added by comma delimiter.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ImportInfoCollection.Parse(PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse one or more sequential import statements.
+            </summary>
+            <param name="values">
+            Collection of imports to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </returns>
+        </member>
+        <member name="M:PyDoc.ImportInfoCollection.Summarize(PyDoc.ImportInfoCollection,PyDoc.IDrillableStat,System.String)">
+            <summary>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </summary>
+            <param name="collection">
+            Reference to the collection to be inspected.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="importDescription">
+            Description to place within the section, as it applies to the caller's
+            context.
+            </param>
+            <returns>
+            String containing formatted text that can be included in a host file.
+            </returns>
+        </member>
+        <member name="T:PyDoc.ImportInfoItem">
+            <summary>
+            Information about an Import.
+            </summary>
+        </member>
+        <member name="M:PyDoc.ImportInfoItem.GetDocNameLibrary(PyDoc.ImportInfoItem,PyDoc.IDrillableStat)">
+            <summary>
+            Return the full document name of this item's library only. Include the
+            prefixes set by parent objects.
+            </summary>
+            <param name="item">
+            Reference to the item for which the document name is to be retrieved.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ImportInfoItem.GetDocNameObject(PyDoc.ImportInfoItem,PyDoc.IDrillableStat)">
+            <summary>
+            Return the full document name of this item's object, including the
+            prefixes set by parent objects.
+            </summary>
+            <param name="item">
+            Reference to the item for which the document name will be retrieved.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.ImportInfoItem.Parse(PyDoc.ImportInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse one import statement at the current line location.
+            </summary>
+            <param name="values">
+            Collection of imports to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </returns>
+        </member>
+        <member name="P:PyDoc.ImportInfoItem.Comments">
+            <summary>
+            Get a reference to the Comments for this Variable.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ImportInfoItem.IndentLevel">
+            <summary>
+            Get/Set the Indent Level of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ImportInfoItem.Library">
+            <summary>
+            Get/Set the name of the library from which this import is read.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ImportInfoItem.ObjectName">
+            <summary>
+            Get/Set the name of the object or collection to be imported from the
+            specified library.
+            </summary>
+        </member>
+        <member name="P:PyDoc.ImportInfoItem.Pattern">
+            <summary>
+            Get the pattern used to match a partial import.
+            </summary>
+        </member>
+        <member name="T:PyDoc.LogicInfoCollection">
+            <summary>
+            Collection of LogicInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.LogicInfoCollection.Parse(PyDoc.LogicInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse a conditional or branching logic item and its members.
+            </summary>
+            <param name="values">
+            Collection of variables to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            The new index at which to continue searching for the next entity.
+            </returns>
+            <remarks>
+            This version only processes a single match before returning to the
+            caller to prevent false positives with general variable expressions.
+            </remarks>
+        </member>
+        <member name="T:PyDoc.LogicInfoItem">
+            <summary>
+            Conditional and Branching Logic partial implementations for
+            extensibility.
+            </summary>
+        </member>
+        <member name="M:PyDoc.LogicInfoItem.Parse(PyDoc.LogicInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse the contents of a conditional or branching login item
+            and its members.
+            </summary>
+            <param name="values">
+            Sibling logic definitions at this level.
+            </param>
+            <param name="lines">
+            Source text lines.
+            </param>
+            <param name="index">
+            Current line index within the source.
+            </param>
+            <param name="indent">
+            Current indent level.
+            </param>
+            <param name="comments">
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </param>
+            <returns>
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </returns>
+        </member>
+        <member name="P:PyDoc.LogicInfoItem.Pattern">
+            <summary>
+            Get the pattern for partially matching a condiditional or branching
+            logic pattern.
+            </summary>
+        </member>
+        <member name="T:PyDoc.MethodInfoCollection">
+            <summary>
+            Collection of MethodInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.#ctor(PyDoc.IDrillableStat)">
+            <summary>
+            Create a new Instance of the MethodInfoCollection Item.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.Add(PyDoc.MethodInfoItem)">
+            <summary>
+            Add a new item to the collection.
+            </summary>
+            <param name="item">
+            Reference to the item to be added.
+            </param>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.Document(PyDoc.MethodInfoCollection,System.IO.DirectoryInfo)">
+            <summary>
+            Individually document each method in the specified collection.
+            </summary>
+            <param name="methods">
+            Collection of methods to document.
+            </param>
+            <param name="targetFolder">
+            Target file folder to which all files will be written.
+            </param>
+            <returns>
+            Value indicating success, if true.
+            </returns>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.EnumerateClasses(PyDoc.MethodInfoItem)">
+            <summary>
+            Return an enumeration of the member classes of the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the method for which classes will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member classes.
+            </returns>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.EnumerateMethods(PyDoc.MethodInfoItem)">
+            <summary>
+            Return an enumeration of the child methods in the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the method for which methods will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member methods.
+            </returns>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.EnumerateVariables(PyDoc.MethodInfoItem)">
+            <summary>
+            Return an enumeration of the variables in the specified instance.
+            </summary>
+            <param name="item">
+            Reference to the method for which variables will be enumerated.
+            </param>
+            <returns>
+            Formatted list of member variables.
+            </returns>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.Parse(PyDoc.MethodInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse a method and its members.
+            </summary>
+            <param name="values">
+            Collection of methods to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            The new index at which to continue searching for the next entity.
+            </returns>
+        </member>
+        <member name="M:PyDoc.MethodInfoCollection.Summarize(PyDoc.MethodInfoCollection,PyDoc.IDrillableStat,System.String)">
+            <summary>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </summary>
+            <param name="collection">
+            Reference to the collection to be inspected.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="methodDescription">
+            Description to place within the section, as it applies to the caller's
+            context.
+            </param>
+            <returns>
+            String containing formatted text that can be included in a host file.
+            </returns>
+        </member>
+        <member name="P:PyDoc.MethodInfoCollection.ParentStat">
+            <summary>
+            Get/Set a reference to the Parent Statistic.
+            </summary>
+        </member>
+        <member name="T:PyDoc.MethodInfoItem">
+            <summary>
+            Information about a Method.
+            </summary>
+        </member>
+        <member name="M:PyDoc.MethodInfoItem.#ctor">
+            <summary>
+            Create a new Instance of the MethodInfoItem Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.MethodInfoItem.#ctor(PyDoc.MethodInfoCollection)">
+            <summary>
+            Create a new Instance of the MethodStatItem Item.
+            </summary>
+            <param name="parent">
+            Reference to the parent collection to which this item belongs.
+            </param>
+        </member>
+        <member name="M:PyDoc.MethodInfoItem.Parse(PyDoc.MethodInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse the contents of a method and its members.
+            </summary>
+            <param name="values">
+            Sibling method definitions at this level.
+            </param>
+            <param name="lines">
+            Source text lines.
+            </param>
+            <param name="index">
+            Current line index within the source.
+            </param>
+            <param name="indent">
+            Current indent level.
+            </param>
+            <param name="comments">
+            Collection of comments directly preceeding this class, as in the
+            case where documentation for a class is written in front of the
+            class declaration.
+            </param>
+            <returns>
+            Next active index in the source. That value might be equal to or
+            larger than the index parameter.
+            </returns>
+        </member>
+        <member name="P:PyDoc.MethodInfoItem.Pattern">
+            <summary>
+            Get the pattern for partially matching a Method.
+            </summary>
+        </member>
+        <member name="T:PyDoc.NameValuesCollection">
+            <summary>
+            Collection of NameValuesItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.NameValuesCollection.Add(System.String,System.String,System.Boolean)">
+            <summary>
+            Add a single Name and Value to the list.
+            </summary>
+            <param name="name">
+            Name to add, if unique.
+            </param>
+            <param name="value">
+            Value to add.
+            </param>
+            <param name="unique">
+            Value indicating whether the value parameter should be added to the
+            collection unconditionally, or only in the case that it will be unique
+            in the Values collection.
+            </param>
+            <returns>
+            Reference to a newly created NameValuesItem, if the name was unique in
+            collection. Otherwise, a reference to the previously existing item.
+            </returns>
+        </member>
+        <member name="M:PyDoc.NameValuesCollection.Add(System.String,System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Add an item by member values, inserting multiple values, as
+            appropriate.
+            </summary>
+            <param name="name">
+            Name to be added to the collection, if new, or to be appended to if the
+            name already exists.
+            </param>
+            <param name="values">
+            Collection of values to add to the item with the specified name.
+            </param>
+            <param name="unique">
+            Value indicating whether each of the values must be unique in the
+            collection to be appended to the Values collection, or whether they
+            will be added unconditionally.
+            </param>
+            <returns>
+            Reference to a newly created NameValuesItem, if the name was unique in
+            collection. Otherwise, a reference to the previously existing item.
+            </returns>
+        </member>
+        <member name="T:PyDoc.NameValuesItem">
+            <summary>
+            Helper item for storing multiple values under a single name.
+            </summary>
+        </member>
+        <member name="P:PyDoc.NameValuesItem.Name">
+            <summary>
+            Get/Set the Name of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.NameValuesItem.Values">
+            <summary>
+            Get a reference to the collection of values on this item.
+            </summary>
+        </member>
+        <member name="T:PyDoc.Program">
+            <summary>
+            The main instance of the PyDoc application.
+            </summary>
+            <remarks>
+            This application creates readable, cross-referenced information from
+            Python source.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.Program.Main(System.String[])">
+            <summary>
+            The command-line startup of this application.
+            </summary>
+            <param name="args">
+            Command-line arguments, following the syntax of /argName[:argValue]
+            </param>
+        </member>
+        <member name="M:PyDoc.Program.Run">
+            <summary>
+            Run the configured instance of the application.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.Files">
+            <summary>
+            Get a reference to the collection of files on this instance.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.InputPath">
+            <summary>
+            Get/Set the Input Path.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.OutputPath">
+            <summary>
+            Get/Set the Output Path.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.ShowSyntax">
+            <summary>
+            Get/Set a value indicating whether to show the usage syntax.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.Verbosity">
+            <summary>
+            Get/Set the Verbosity level of this instance.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Program.WaitAfterEnd">
+            <summary>
+            Get/Set a value indicating whether to wait for keypress after the end
+            of the application.
+            </summary>
+        </member>
+        <member name="T:PyDoc.TextLineCollection">
+            <summary>
+            Collection of TextLineItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.TextLineCollection.Add(System.String)">
+            <summary>
+            Add a new item to the collection by member values.
+            </summary>
+            <param name="value">
+            Line of text to be added.
+            </param>
+        </member>
+        <member name="M:PyDoc.TextLineCollection.AddRange(System.String)">
+            <summary>
+            Add a range of lines to the collection.
+            </summary>
+            <param name="text">
+            Range of lines, each separated by a newline character.
+            </param>
+        </member>
+        <member name="T:PyDoc.TextLineItem">
+            <summary>
+            A single line of text.
+            </summary>
+        </member>
+        <member name="P:PyDoc.TextLineItem.Value">
+            <summary>
+            Get/Set the Value of this Item.
+            </summary>
+        </member>
+        <member name="T:PyDoc.Utils">
+            <summary>
+            Common utilities for this application.
+            </summary>
+        </member>
+        <member name="F:PyDoc.Utils.mAssembly">
+            <summary>
+            One-time load of Assembly info. Will stay active until application
+            shuts down.
+            </summary>
+        </member>
+        <member name="M:PyDoc.Utils.GetCommentSingle(System.String)">
+            <summary>
+            Return any single line comment present in the caller's string.
+            </summary>
+            <param name="source">
+            Source text to inspect for comments.
+            </param>
+            <returns>
+            Any single-line comment found on the line.
+            </returns>
+            <remarks>
+            This version is capable of looking around all quote types to find
+            the comment at the end, ignoring any false signal found inside the
+            quoted text.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.Utils.GetIndex(System.Text.RegularExpressions.Match,System.String)">
+            <summary>
+            Return the source index of the specified Group in the caller-specified
+            Match.
+            </summary>
+            <param name="match">
+            Reference to the instance of the match to inspect.
+            </param>
+            <param name="groupName">
+            Name of the group for which the index will be retrieved.
+            </param>
+            <returns>
+            Character index of the match group in the source string, if found.
+            Otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.GetLength(System.Text.RegularExpressions.Match,System.String)">
+            <summary>
+            Return the length of the specified Group in the caller-specified Match.
+            </summary>
+            <param name="match">
+            Reference to the instance of the match to inspect.
+            </param>
+            <param name="groupName">
+            Name of the group for which the length of the match will be retrieved.
+            </param>
+            <returns>
+            Length of the matching group, if found. Otherwise, 0.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.GetRelativePath(System.String,System.String)">
+            <summary>
+            Return the relative directory name, using the difference between the
+            base and a comparison.
+            </summary>
+            <param name="basePath">
+            Base path to serve as the root.
+            </param>
+            <param name="comparePath">
+            Path to be compared with the base.
+            </param>
+            <returns>
+            Difference between base and comparison paths, if a difference existed.
+            Otherwise, an empty string.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.GetResourceTextEmbedded(System.String)">
+            <summary>
+            Return the text found in the specified embedded resource.
+            </summary>
+            <param name="resourceName">
+            Full name of the embedded resource. Recall that embedded resources are
+            prefixed by the default namespace for the project. In this case, PyDoc.
+            </param>
+            <returns>
+            Text from the specified embedded resource, if found. Otherwise, an
+            empty string.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.GetTail(PyDoc.TextLineCollection,System.Int32,System.String,System.Text.StringBuilder,PyDoc.CommentInfoCollection)">
+            <summary>
+            Find and set the tail content in the caller's string builder, returning
+            the next active line.
+            </summary>
+            <param name="lines">
+            Collection of source text lines.
+            </param>
+            <param name="index">
+            Current index within the source text collection.
+            </param>
+            <param name="tailPattern">
+            Pattern to be matched in order to find tail.
+            </param>
+            <param name="target">
+            Target content string builder.
+            </param>
+            <param name="comments">
+            Comments found on the content that will need to be handled by
+            the caller.
+            </param>
+            <returns>
+            Next active line, if tail found. Otherwise, -1.
+            </returns>
+            <remarks>
+            <para>
+            The product of this method appears in the target string.
+            </para>
+            <para>
+            The comments collection may contain comments that need to be
+            assigned to this object once it is successfully identified and
+            instantiated.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:PyDoc.Utils.GetValue(System.Text.RegularExpressions.Match,System.String)">
+            <summary>
+            Return the value of the specified Group in the caller-specified Match.
+            </summary>
+            <param name="match">
+            Reference to the instance of the match to inspect.
+            </param>
+            <param name="groupName">
+            Name of the group for which the value of the match will be retrieved.
+            </param>
+            <returns>
+            Value of the match found in the specified group of the provided match,
+            if any. If no match or group were found, the return value is an empty
+            string.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.GetVariableAssignment(PyDoc.TextLineCollection,System.Int32,System.Text.StringBuilder,PyDoc.CommentInfoCollection)">
+            <summary>
+            Find and place the variable expression content in the caller's string
+            builder, returning the next active line.
+            </summary>
+            <param name="lines">
+            Reference to a collection of source lines.
+            </param>
+            <param name="index">
+            Current index within the source lines collection.
+            </param>
+            <param name="target">
+            Target string builder that will receive the full assignment text
+            of the expression.
+            </param>
+            <param name="comments">
+            Comments encountered that will need to be handled by the host.
+            </param>
+            <returns>
+            Next active line, if assignment found. Otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.IsTerminated(System.String)">
+            <summary>
+            Return a value indicating whether the specified string is terminated.
+            </summary>
+            <param name="value">
+            Value to test for fully terminated expression.
+            </param>
+            <returns>
+            True if the value has no enclosing characters, or is fully terminated.
+            Otherwise, false.
+            </returns>
+            <remarks>
+            In this environment, value termination is bound by starting and
+            ending quotes, brackets, and parenthsis, as well as the presence or
+            absence of trailing punctuation. For example, a comma at the end of the
+            line indicates that more is following on the next line.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.Utils.ParseAll(PyDoc.ContainerInfo)">
+            <summary>
+            Parse all members of the current level.
+            </summary>
+            <param name="container">
+            Reference to an abstract container that might have multiple classes,
+            methods, and variables.
+            </param>
+            <returns>
+            Next line index within the source. If no matches were found at this
+            level, this value will be equal to the container.Index value.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.QuoteIsOpen(System.String)">
+            <summary>
+            Return a value indicating whether a quote is open at the end of the
+            provided line.
+            </summary>
+            <param name="value">
+            Value to inspect.
+            </param>
+            <returns>
+            True if quoted text within the value has been left unterminated.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.RemoveCommentSingle(System.String)">
+            <summary>
+            Return the supplied line with any single line comment removed.
+            </summary>
+            <param name="source">
+            Text to inspect.
+            </param>
+            <returns>
+            Source text with any single-line comments removed.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.RemoveFileExtension(System.String,System.Boolean)">
+            <summary>
+            Return the caller's filename with the extension removed.
+            </summary>
+            <param name="value">
+            Filename to inspect.
+            </param>
+            <param name="includePath">
+            Value indicating whether any path portion found on the filename should
+            be retained in the result.
+            </param>
+            <returns>
+            Filename without extension.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.ReplaceNonAN(System.String,System.String)">
+            <summary>
+            Return a value where the caller's non-alphanumeric strings have been
+            replaced.
+            </summary>
+            <param name="value">
+            Value to inspect for non-alphanumeric characters.
+            </param>
+            <param name="replacement">
+            Pattern to insert in place of any non-alphanumeric characters found.
+            </param>
+            <returns>
+            Version of value that has had all instances of alphanumeric characters
+            replaced with the replacement pattern.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.ReplaceNonAN(System.String,System.String,System.Char[])">
+            <summary>
+            Return a value where the caller's non-alphanumeric strings have been
+            replaced.
+            </summary>
+            <param name="value">
+            Value to inspect for non-alphanumeric characters.
+            </param>
+            <param name="replacement">
+            Pattern to insert in place of any non-alphanumeric characters found.
+            </param>
+            <param name="exceptions">
+            Non-alphanumeric exceptions to allow. For example, dash and underscore
+            are commonly legal in named entities.
+            </param>
+            <returns>
+            Version of value that has had all instances of alphanumeric characters
+            replaced with the replacement pattern.
+            </returns>
+        </member>
+        <member name="M:PyDoc.Utils.ToHtml(System.String)">
+            <summary>
+            Return the caller's content, formatted for HTML.
+            </summary>
+            <param name="content">
+            Content to format.
+            </param>
+            <returns>
+            Caller's content, valid for inclusion within HTML.
+            </returns>
+        </member>
+        <member name="P:PyDoc.Utils.StatDefaultCSS">
+            <summary>
+            Get the constant Default.css content for the Statistics File.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Utils.StatFileFooter">
+            <summary>
+            Get the constant portion of the Statistics File Footer.
+            </summary>
+        </member>
+        <member name="P:PyDoc.Utils.StatFileHeader">
+            <summary>
+            Get the constant portion of the Statistics File Header.
+            </summary>
+        </member>
+        <member name="T:PyDoc.VariableInfoCollection">
+            <summary>
+            Collection of VariableInfoItem Items.
+            </summary>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.#ctor(PyDoc.IDrillableStat)">
+            <summary>
+            Create a new Instance of the VariableInfoCollection Item.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.Add(PyDoc.VariableInfoItem)">
+            <summary>
+            Add a new item to the collection.
+            </summary>
+            <param name="item">
+            Reference to the item to be added.
+            </param>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.Document(PyDoc.VariableInfoCollection,System.IO.DirectoryInfo)">
+            <summary>
+            Individually document each variable in the specified collection.
+            </summary>
+            <param name="variables">
+            Collection of variables to be documented.
+            </param>
+            <param name="targetFolder">
+            Reference to the output file folder.
+            </param>
+            <returns>
+            Value indicating success, if true.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.EnumerateCalls(PyDoc.IDrillableStat,PyDoc.NameValuesItem)">
+            <summary>
+            Return a list of enumerated calls made from this variable.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="name">
+            Name of the variable to enumerate for.
+            </param>
+            <returns>
+            Formatted list of function calls placed by this variable.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.EnumerateObjects(PyDoc.IDrillableStat,PyDoc.NameValuesItem)">
+            <summary>
+            Return a list of enumerated classes referenced from this variable.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="name">
+            Name of the variable for which object references will be enumerated.
+            </param>
+            <returns>
+            Formatted list of object references made by the specified variable.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.EnumerateReferences(PyDoc.IDrillableStat,PyDoc.NameValuesItem)">
+            <summary>
+            Return a list of enumerated variables referenced from this variable.
+            </summary>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="name">
+            Name of the variable for which references will be enumerated.
+            </param>
+            <returns>
+            Formatted list of references to other variables made by the variable
+            of the specified name within this scope.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.GetCommentsForName(PyDoc.VariableInfoCollection,System.String)">
+            <summary>
+            Return all of the comments found in the collection for the specified
+            variable name.
+            </summary>
+            <param name="collection">
+            Reference to the variables collection to be searched for matching
+            names.
+            </param>
+            <param name="name">
+            Name of the variable for which comments will be returned.
+            </param>
+            <returns>
+            Concatenated string of all comments assigned to the variable of the
+            specified name.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.GetName(PyDoc.VariableInfoCollection,System.String)">
+            <summary>
+            Return the first item from the collection having the specified name.
+            </summary>
+            <param name="collection">
+            Reference to the variables collection to search.
+            </param>
+            <param name="name">
+            Name of the variable to find.
+            </param>
+            <returns>
+            Reference to the first item found matching the specified name, if
+            found. Otherwise, null.
+            </returns>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.Parse(PyDoc.VariableInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse a variable and its constituents.
+            </summary>
+            <param name="values">
+            Collection of variables to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            The new index at which to continue searching for the next entity.
+            </returns>
+            <remarks>
+            This version only performs one find prior to returning to caller to
+            prevent false positives on various branching logic expressions.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.VariableInfoCollection.Summarize(PyDoc.VariableInfoCollection,PyDoc.IDrillableStat,System.String)">
+            <summary>
+            Summarize the members of this collection for inclusion in an
+            enumeration.
+            </summary>
+            <param name="collection">
+            Reference to the collection to be inspected.
+            </param>
+            <param name="parentStat">
+            Reference to the parent statistics controller.
+            </param>
+            <param name="variableDescription">
+            Description to place within the section, as it applies to the caller's
+            context.
+            </param>
+            <returns>
+            String containing formatted text that can be included in a host file.
+            </returns>
+        </member>
+        <member name="P:PyDoc.VariableInfoCollection.ParentStat">
+            <summary>
+            Get/Set a reference to the Parent Statistic.
+            </summary>
+        </member>
+        <member name="T:PyDoc.VariableInfoItem">
+            <summary>
+            Information about a Variable.
+            </summary>
+        </member>
+        <member name="M:PyDoc.VariableInfoItem.#ctor">
+            <summary>
+            Create a new Instance of the VariableStatItem Item.
+            </summary>
+        </member>
+        <member name="M:PyDoc.VariableInfoItem.#ctor(PyDoc.VariableInfoCollection)">
+            <summary>
+            Create a new Instance of the VariableStatItem Item.
+            </summary>
+            <param name="parent">
+            Reference to the parent collection to which this item belongs.
+            </param>
+        </member>
+        <member name="M:PyDoc.VariableInfoItem.GetDocName">
+            <summary>
+            Return the full document name of this item, including the prefixes
+            set by parent objects.
+            </summary>
+            <returns>
+            Full document name of this item, including prefixes set by parent
+            objects.
+            </returns>
+            <remarks>
+            This method does not include the file extension, since documentation
+            can be written in different file formats. The final extension will be
+            appended by the formatter.
+            </remarks>
+        </member>
+        <member name="M:PyDoc.VariableInfoItem.Parse(PyDoc.VariableInfoCollection,PyDoc.TextLineCollection,System.Int32,System.Int32,PyDoc.CommentInfoCollection)">
+            <summary>
+            Parse the specified line, creating a Variable definition where
+            appropriate.
+            </summary>
+            <param name="values">
+            Collection of variables to which matching items will be appended.
+            </param>
+            <param name="lines">
+            Collection of source text lines to inspect.
+            </param>
+            <param name="index">
+            Current line index within the source file collection.
+            </param>
+            <param name="indent">
+            Current source indent spacing from left margin.
+            </param>
+            <param name="comments">
+            Collection of comments not yet assigned to objects.
+            </param>
+            <returns>
+            Next line index to process. This method will return the value
+            of the index parameter if no matches were found.
+            </returns>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Assignment">
+            <summary>
+            Get/Set the assignment value of this item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Comments">
+            <summary>
+            Get a reference to the Comments for this Variable.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.DocPrefix">
+            <summary>
+            Get/Set the Document Prefix used by items of this type.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.IndentLevel">
+            <summary>
+            Get/Set the Indent Level of this Item.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.LineNumber">
+            <summary>
+            Get/Set the Line Number at which this instance was found.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Name">
+            <summary>
+            Get/Set the Name of the Variable.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Operator">
+            <summary>
+            Get/Set the operator used for this variable assignment.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Parent">
+            <summary>
+            Get/Set a reference to the Parent collection.
+            </summary>
+        </member>
+        <member name="P:PyDoc.VariableInfoItem.Pattern">
+            <summary>
+            Get the pattern for partially matching a Variable.
+            </summary>
+        </member>
+    </members>
+</doc>
