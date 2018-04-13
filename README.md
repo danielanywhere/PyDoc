@@ -6,7 +6,7 @@ An automated language documentation generator for the Python language, written i
 This is a .NET console application that creates a deep-linking encyclopedic documentation reference from any Python project.
 
 ### How Changes to This Project Are Tested
-The project I selected for testing was arbitrary, and the test bed for this project happens to be is the complete Python source of the [**pydoit / doit**](https://github.com/pydoit/doit) GitHub project. At the time of this writing, the Python source consists of roughly 129 files, and the output currently expands to 6,678 separate hyperlinked object documentation files.
+I arbitrarily selected a Python-based project on which to test this application. The one I chose was the complete Python source of the [**pydoit / doit**](https://github.com/pydoit/doit) GitHub project. At the time of this writing, the Python source consists of roughly 129 files, and the output currently expands to 6,678 separate hyperlinked object documentation files.
 
 ### Sample Output
 You can review the documentation output of the **doit** project [here](http://www.localmarketproductions.com/PyDocSamples/). The Index.html file lists all source files found, and you can drill down from there.
