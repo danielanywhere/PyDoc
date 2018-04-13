@@ -8,7 +8,7 @@ hyperlinked object documentation files.
 
 You can review the documentation output of the **doit** project [here](http://www.localmarketproductions.com/PyDocSamples/). The Index.html file lists all source files found.
 
-Final documentation results depend somewhat on how well you comment your source files, and how descriptively you name all of the functional elements.
+Final documentation results depend somewhat on how well you comment your original Python source files, and how descriptively you name all of the functional elements.
 
 
 
