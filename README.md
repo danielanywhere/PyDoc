@@ -12,7 +12,7 @@ The project I selected for testing was arbitrary, and the test bed for this proj
 You can review the documentation output of the **doit** project [here](http://www.localmarketproductions.com/PyDocSamples/). The Index.html file lists all source files found, and you can drill down from there.
 
 ### Coding With the Application
-Basic API documentation has been rendered for PyDoc that can be useful in writing code to it. You can find the API file [here](https://danielanywhere.github.io/PyDocDocumentation.html). Other helpful information can be found at my GitHub project page [https://danielanywhere.github.io/PyDocDocumentation.html](https://danielanywhere.github.io/PyDocDocumentation.html).
+Basic API documentation has been rendered for PyDoc that can be useful in writing code to it. You can find the API file [here](https://danielanywhere.github.io/PyDocDocumentation.html). Other helpful information can be found at my GitHub project page [https://danielanywhere.github.io/](https://danielanywhere.github.io/).
 
 ### Using the Application
 At this time, a full release hasn't yet been created, but this project can be built to run on Windows, Linux, and macOS. You can either create a command-line console application, or with only slight configuration, it can be used as a shared library, either code-level or runtime. In other words, I am currently waiting to see where user or contributor demand takes the release.
