@@ -19,12 +19,12 @@ At this time, a full release hasn't yet been created, but this project can be bu
 
 In the meantime, the project can be downloaded and compiled in the Community version of Microsoft Visual Studio to be run as a console application with the following command-line parameters.
 ```
-   PyDoc /path:{Pathname} [options]
+   PyDoc /inp:{Pathname} /outp:{Pathname} [options]
 	     /?                 - Display this message.
-			 /inp:{Pathname}    - Search within this path for input.
-			 /outp:{Pathname}   - Write documentation files to this output path.
-			 /v:{Level}         - Verbosity level. Default=0.
-			 /w                 - Wait for keypress after application end.
+       /inp:{Pathname}    - Search within this path for input.
+       /outp:{Pathname}   - Write documentation files to this output path.
+       /v:{Level}         - Verbosity level. Default=0.
+       /w                 - Wait for keypress after application end.
 ```
 
 ### General Notes
