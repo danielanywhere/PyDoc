@@ -1,4 +1,4 @@
-# PyDoc
+# autoPyDoc
 An automated language documentation generator for the Python language, written in C#.<br />
 <sup>Version 1.0. Published 20180412.1200</sup>
 

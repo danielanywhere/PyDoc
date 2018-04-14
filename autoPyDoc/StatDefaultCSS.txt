@@ -1,0 +1,121 @@
+﻿body {
+	font-family: Calibri, Verdana, Helvetica, sans-serif;
+	font-size: 12pt;
+	background-color: aliceblue;
+}
+div.blt {
+	display: inline-block;
+}
+div.level {
+	margin-top: 0.2in;
+	margin-left: 0.1in;
+}
+div.level div.title {
+	display: block;
+	color: #006699;
+	font-size: 20pt;
+	font-weight: bold;
+}
+div.level p {
+	margin-top: 0in;
+	margin-bottom: 0.15in;
+}
+div.level p.gray {
+	color: gray;
+}
+div.page {
+	background-color: white;
+	width: 800px;
+	margin:0 auto;
+	padding: 8px;
+}
+div.prop {
+	border-bottom: 2px solid black;
+}
+div.prop div.name {
+	display: inline-block;
+	width: 100pt;
+}
+div.prop div.value {
+	display: inline-block;
+	width: 200pt;
+	font-weight: bold;
+}
+h2.id {
+	color: #007777;
+}
+table {
+	border-collapse: collapse;
+}
+table.grid {
+	width: 100%;
+	border-bottom: 2px solid black;
+}
+table.grid td {
+	vertical-align: top;
+	border-left: 1px solid #777777;
+	border-right: 1px solid #777777;
+	border-bottom: 1px solid #777777;
+}
+table.grid td.buffer {
+	width: 80%;
+}
+table.grid td.item {
+	font-weight: bold;
+	width: 80%;
+}
+table.grid th {
+	font-size: 12pt;
+	font-weight: bold;
+	color: black;
+	text-align: left;
+	border-bottom: 2px solid black;
+}
+table.grid th.buffer {
+	width: 80%;
+}
+table.grid th.class, table.grid td.class {
+	color: #003399;
+}
+table.grid th.info, table.grid td.info {
+	color: #336600;
+}
+table.grid th.method, table.grid td.method {
+	color: #6600cc;
+}
+table.grid th.variable, table.grid td.variable {
+	color: #993366;
+}
+table.grid th.class,
+table.grid th.method,
+table.grid th.variable {
+	font-weight: bold;
+	vertical-align: top;
+	border-left: 1px solid #777777;
+	border-right: 1px solid #777777;
+	border-bottom: 1px solid #777777;
+}
+table.grid th.blank {
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-bottom: 2px solid black !important;
+}
+table.grid tr.line th, table.grid tr.line td {
+	border-bottom: 1px solid #777777;
+}
+table.grid tr.nobord th {
+	font-size: 12pt;
+	font-weight: bold;
+	color: black;
+	text-align: left;
+	border-bottom: none;
+}
+ul.member {
+	margin-top: 0;
+	column-count: 2;
+	column-gap: 24pt;
+}
+.bordul {
+	border-top: 2px solid black !important;
+	border-bottom: 2px solid black !important;
+}
